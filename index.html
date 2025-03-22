@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minimal Steam</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+    }
+    /* Видео на заднем фоне - отключаем реакцию на мышь */
+    #video-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      pointer-events: none;
+    }
+    /* Кнопка, появляющаяся в центре видео */
+    .steam-button {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      background-color: #1b2838;
+      color: white;
+      padding: 15px 30px;
+      text-decoration: none;
+      font-size: 20px;
+      border-radius: 5px;
+      opacity: 0;
+      transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+      z-index: 10;
+    }
+    .steam-button:hover {
+      background-color: #2a475e;
+    }
+  </style>
+</head>
+<body>
+  <!-- Видео с YouTube на фоне (звук включён, элементы управления скрыты, максимальное качество) -->
+  <iframe 
+    id="video-background"
+    src="https://www.youtube.com/embed/UvRehjZQDxU?autoplay=1&controls=0&loop=1&playlist=UvRehjZQDxU&modestbranding=1&showinfo=0&vq=hd2160&iv_load_policy=3&fs=1" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen>
+  </iframe>
+
+  <!-- Кнопка Steam, появляющаяся через 11 секунд -->
+  <a href="https://store.steampowered.com/" class="steam-button" target="_blank">
+    Steam
+  </a>
+
+  <script>
+    window.addEventListener("load", function () {
+      setTimeout(function () {
+        const button = document.querySelector(".steam-button");
+        button.style.opacity = "1";
+        button.style.transform = "translate(-50%, -50%) scale(1)";
+      }, 11000); // 11 секунд
+    });
+  </script>
+</body>
+</html>
